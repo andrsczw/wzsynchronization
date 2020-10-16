@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Wu Heqian\PycharmProjects\wzsynchronization\venv"
+VIRTUAL_ENV="C:\Users\chengzhi wu\PycharmProjects\wzsynchronization\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
