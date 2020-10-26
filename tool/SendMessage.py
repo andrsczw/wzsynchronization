@@ -1,3 +1,4 @@
+import pickle
 import socket
 
 def SendMessage(rip, rport, msg):
@@ -13,5 +14,8 @@ def SendMessage(rip, rport, msg):
         #print("dsssfsf")
         s.send(msg.encode('utf-8'))
         msg = s.recv(1024)
-        print(msg.decode('utf-8'))
+        a = pickle.loads(msg)
+        print(type(a))
+        print("a:::",a)
+        #print(msg.decode('utf-8'))
         s.close()

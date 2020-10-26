@@ -1,5 +1,5 @@
 import os
-
+from pathlib import Path
 
 def GetDirectories(file_dir, **dock):
     """
@@ -8,6 +8,8 @@ def GetDirectories(file_dir, **dock):
     :param file_dir:root of the scan dirs 当前查询的目录
     """
     #print(os.walk(file_dir))
+    if not Path(file_dir).is_dir():
+        return -1
     l = [n for n in os.walk(file_dir)][0]
     if len(l) > 0:
         print(l)
