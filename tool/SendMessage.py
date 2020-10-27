@@ -14,8 +14,5 @@ def SendMessage(rip, rport, msg):
         #print("dsssfsf")
         s.send(msg.encode('utf-8'))
         msg = s.recv(1024)
-        a = pickle.loads(msg)
-        print(type(a))
-        print("a:::",a)
-        #print(msg.decode('utf-8'))
         s.close()
+        return msg
