@@ -1,6 +1,6 @@
 import pickle
 import socket
-from tool import test, GetDictElement
+from tool import  GetDictElement
 from tool.SendMessage import SendMessage
 
 
@@ -9,7 +9,8 @@ def Client(ip, port, local_config_dir):
     msg = SendMessage(ip, port, "0000")
     remotedirs = pickle.loads(msg)
     if isinstance(remotedirs, dict):
-        GetDictElement.GetDirsDictElement(remotedirs, lambda dic: print(dic))
+        print(remotedirs)
+        GetDictElement.GetDirsDictElement(remotedirs, lambda dic: print(len(dic)))
         # for k in remotedirs.keys():
         #     if isinstance(remotedirs[k], dict):
         #         print(remotedirs[k])

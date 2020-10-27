@@ -1,5 +1,5 @@
 import socket
-from tool import test
+
 from tool.ReceivedMessage import ReceivedMessage
 
 

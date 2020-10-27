@@ -2,7 +2,7 @@ import pickle
 import socket
 import os
 
-from tool import test
+from tool import GetDirectories
 
 
 def ReceivedMessage(ip, port):
@@ -25,9 +25,9 @@ def ReceivedMessage(ip, port):
         print(data)
         if data.decode('utf-8') == "0000":
             basedir = "D:\\soft\\test"
-            dirs_files_list = []
-            a = {}
-            dirs_files_list = test.GetDirectories(basedir, {})
+            dirs_files_list = {}
+
+            dirs_files_list = GetDirectories.GetDirectories(basedir, {})
             print("dirs:  :::", dirs_files_list)
             c.send(pickle.dumps(dirs_files_list))
 
