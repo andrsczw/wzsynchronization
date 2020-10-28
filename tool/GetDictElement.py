@@ -1,6 +1,7 @@
-def GetDirsDictElement(DirsDict, func):
-    print("dfaffff")
-    def wrapper(DirsDict, func):
+def GetDirsDictElement(DirsDict, func, basedir=""):
+
+    #print("dfaffff")
+    def wrapper(DirsDict,prefix="",basedir=basedir):
 
         if not DirsDict:
 
@@ -8,8 +9,9 @@ def GetDirsDictElement(DirsDict, func):
             return
 
         for k in DirsDict.keys():
-            print(k,DirsDict[k])
-            func(DirsDict[k])
-            return DirsDict(DirsDict[k],func)
+            prefix = prefix +"//"+ k
+            print(prefix, k)
+            func(DirsDict[k], basedir)
+            wrapper(DirsDict[k], prefix)
 
-    return wrapper(DirsDict, func)
+    return wrapper(DirsDict)
