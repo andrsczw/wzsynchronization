@@ -3,6 +3,7 @@ import socket
 import os
 
 from tool import GetDirectories
+from tool.GetFileNameByDirName import GetFileNameByDirName
 
 
 def ReceivedMessage(ip, port):
@@ -23,15 +24,23 @@ def ReceivedMessage(ip, port):
         print('连接地址：', addr)
         data = c.recv(1024)
         print(data)
-        if data.decode('utf-8') == "0000":
+        command=data.decode('utf-8')
+        if command == "0000":
             basedir = "D:\\soft\\test"
             dirs_files_list = {}
 
             dirs_files_list = GetDirectories.GetDirectories(basedir, {})
             print("dirs:  :::", dirs_files_list)
             c.send(pickle.dumps(dirs_files_list))
+        elif command.split("#")[0] == "0001":
 
-        print("c.recv(1024):   ", data.decode('utf-8'))
+            dir = basedir + "\\" + command.split("#")[1][1:]
+            dir = dir.replace('*','\\')
+            files_list = GetFileNameByDirName(dir)
+            print("files_list:  ", files_list, dir)
+            c.send(pickle.dumps(files_list))
+
+        #print("c.recv(1024):   ", data.decode('utf-8'))
 
         #c.send('您好，您收到了服务器的回复'.encode('utf-8'))
         c.close()

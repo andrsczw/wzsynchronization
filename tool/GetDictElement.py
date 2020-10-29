@@ -1,4 +1,4 @@
-def GetDirsDictElement(DirsDict, func, b=""):
+def GetDirsDictElement(DirsDict, func, BaseDir):
 
     #print("dfaffff")
     def wrapper(DirsDict, level=-1, prefix=""):
@@ -13,11 +13,12 @@ def GetDirsDictElement(DirsDict, func, b=""):
 
 
         for k in DirsDict.keys():
-            print(level,"  afafaf  ",k)
+            print(level, "  afafaf  ", k)
             if level == -1:
-                prefix=""
-            prefix = prefix + "//" + k
-            #print("prefix:  "+prefix)
+                prefix = ""
+            prefix = prefix + "\\" + k
+            print("b+prefix:  ", prefix)
+            func(prefix,BaseDir)
             wrapper(DirsDict[k], level+1, prefix)
 
     return wrapper(DirsDict)

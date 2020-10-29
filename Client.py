@@ -5,11 +5,22 @@ from tool import GetDictElement, GetDirectories
 from tool.SendMessage import SendMessage
 import shutil
 
-def tes(dir, basedir):
-    if isinstance(dir, str):
-        os.mkdir(basedir+"//"+dir)
+def createBlankDirs(dir, basedir):
+    print("0001#"+dir)
+    os.mkdir(basedir + "\\" + dir)
+    msg = SendMessage("127.0.0.1", 8000, "0001#" + dir)
+    remotefiles = pickle.loads(msg)
+    print(remotefiles)
+    # os.mkdir(basedir+"//"+dir)
 
-    #SendMessage("127.0.0.1",8000,"0001#")
+
+def tes(dir):
+    msg = SendMessage("127.0.0.1", 8000, "0001#"+dir)
+    remotefiles = pickle.loads(msg)
+    print(remotefiles)
+    #os.mkdir(basedir+"//"+dir)
+
+
 
 def Client(ip, port, local_config_dir):
     #0000初始化
@@ -24,7 +35,7 @@ def Client(ip, port, local_config_dir):
     if isinstance(remotedirs, dict):
         #print(remotedirs)
         #新建空目录
-        GetDictElement.GetDirsDictElement(remotedirs, tes, b=local_config_dir)#("lambda x:print  ",  x))
+        GetDictElement.GetDirsDictElement(remotedirs, createBlankDirs, local_config_dir)#("lambda x:print  ",  x))
 
         # for k in remotedirs.keys():
         #     if isinstance(remotedirs[k], dict):
@@ -33,4 +44,4 @@ def Client(ip, port, local_config_dir):
     #print(type(a))
     #print("a:::", a)
     # print(msg.decode('utf-8'))
-Client("127.0.0.1",8000,"d://test")
+Client("127.0.0.1",8000,"d:\\test")
