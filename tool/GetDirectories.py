@@ -13,15 +13,15 @@ def GetDirectories(file_dir, dock):
 
     tmp = {}
     if len(l) > 0:
-        print(l)
+        #print(l)
         #是否有文件夹
         if len(l[1]) > 0:
             print("有值")
 
             for i in l[1]:
-                print(i)
+                #print(i)
                 tmp[i] = GetDirectories(file_dir+"\\"+i, dock)
         else:
-            print("没值")
+            #print("没值")
             return {}
         return tmp

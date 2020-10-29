@@ -1,17 +1,23 @@
-def GetDirsDictElement(DirsDict, func, basedir=""):
+def GetDirsDictElement(DirsDict, func, b=""):
 
     #print("dfaffff")
-    def wrapper(DirsDict,prefix="",basedir=basedir):
+    def wrapper(DirsDict, level=-1, prefix=""):
+        print(level)
+
+        if not isinstance(DirsDict, dict):
+            print('不是字典')
 
         if not DirsDict:
-
             print("无子集")
-            return
+
+
 
         for k in DirsDict.keys():
-            prefix = prefix +"//"+ k
-            print(prefix, k)
-            func(DirsDict[k], basedir)
-            wrapper(DirsDict[k], prefix)
+            print(level,"  afafaf  ",k)
+            if level == -1:
+                prefix=""
+            prefix = prefix + "//" + k
+            #print("prefix:  "+prefix)
+            wrapper(DirsDict[k], level+1, prefix)
 
     return wrapper(DirsDict)
