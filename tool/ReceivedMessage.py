@@ -36,7 +36,7 @@ def ReceivedMessage(ip, port):
 
             dir = basedir + "\\" + command.split("#")[1][1:]
             dir = dir.replace('*','\\')
-            files_list = GetFileNameByDirName(dir)
+            files_list = GetFileNameByDirName(dir,basedir)
             print("files_list:  ", files_list, dir)
 
             c.send(pickle.dumps(files_list))
