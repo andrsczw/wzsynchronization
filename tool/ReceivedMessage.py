@@ -38,6 +38,7 @@ def ReceivedMessage(ip, port):
             dir = dir.replace('*','\\')
             files_list = GetFileNameByDirName(dir)
             print("files_list:  ", files_list, dir)
+
             c.send(pickle.dumps(files_list))
 
         #print("c.recv(1024):   ", data.decode('utf-8'))
