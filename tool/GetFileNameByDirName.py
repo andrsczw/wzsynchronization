@@ -11,10 +11,18 @@ def GetFileNameByDirName(file_dir,basedir):
         if n[2] :
             if len(n[2])>1:
                 for v in n[2]:
-                    print("str(n[0] + " " + n[2])  ",str(n[0] + "\\" + v))
-                    l.append(str(n[0] + "\\" + v).lstrip(basedir))
+                    if len(n[0].replace(basedir,""))>=2:
+                        print("str(n[0] + " " + n[2])  ",str(n[0] + "\\" + v))
+                        l.append(str(n[0] + "\\" + v).replace(basedir, ""))
+                    else:
+                        tem = str(n[0] + v).replace(basedir, "")
+                        l.append(tem)
+            elif len(n[0].replace(basedir,""))>=2:
+                l.append(str(n[0] + "\\" + n[2][0]).replace(basedir, ""))
+
             else:
-                l.append(str(n[0] + "\\" + n[2][0]).lstrip(basedir))
+                tem = str(n[0] + n[2][0]).replace(basedir, "")
+                l.append(tem)
 
     #l = [n for n in os.walk(file_dir)][0][2]
     print("jjjjjjjjjjjjjj",l)

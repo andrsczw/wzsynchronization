@@ -25,8 +25,9 @@ def ReceivedMessage(ip, port):
         data = c.recv(1024)
         print(data)
         command=data.decode('utf-8')
+        basedir = "D:\\soft\\test"
         if command == "0000":
-            basedir = "D:\\soft\\test"
+
             dirs_files_list = {}
 
             dirs_files_list = GetDirectories.GetDirectories(basedir, {})
@@ -35,11 +36,17 @@ def ReceivedMessage(ip, port):
         elif command.split("#")[0] == "0001":
 
             dir = basedir + "\\" + command.split("#")[1][1:]
-            dir = dir.replace('*','\\')
+            dir = dir.replace('*', '\\')
             files_list = GetFileNameByDirName(dir,basedir)
             print("files_list:  ", files_list, dir)
 
             c.send(pickle.dumps(files_list))
+        elif command.split("#")[0] == "0002":
+            dir = basedir + "\\" + command.split("#")[1][1:]
+            dir = dir.replace('*', '\\')
+            print("1111111111"+dir)
+            f = open(dir,'rb')
+            c.sendall(f.read())
 
         #print("c.recv(1024):   ", data.decode('utf-8'))
 

@@ -7,6 +7,7 @@ def SendMessage(rip, rport, msg):
     :param rport:  远程端口
     :param msg:  发送消息
     """
+
     #创建socket对象
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((rip, rport))
