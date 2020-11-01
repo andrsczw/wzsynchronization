@@ -32,10 +32,9 @@ def GetFile(rip, rport, msg, localbasedir):
                 total_data = total_data + data
                 #print("num=  ",num,"data=  ", data)
                 #print("num=  ",num,"len(data)=  ", len(data))
-            print("保存文件", filename)
+            print("同步文件", filename)
             with open(filename, 'wb') as f:
-
                 f.write(total_data)
-                print("保存文件成功!  ", filename)
+                print("同步文件成功!  ", filename)
             return
         s.close()

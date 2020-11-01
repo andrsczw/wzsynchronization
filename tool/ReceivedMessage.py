@@ -1,6 +1,7 @@
 import pickle
 import socket
 import os
+import time
 
 from tool import GetDirectories
 from tool.GetFileNameByDirName import GetFileNameByDirName
@@ -24,7 +25,7 @@ def ReceivedMessage(ip, port):
         print('连接地址：', addr)
         data = c.recv(1024)
         print(data)
-        command=data.decode('utf-8')
+        command = data.decode('utf-8')
         basedir = "D:\\soft\\test"
         if command == "0000":
 
@@ -48,6 +49,11 @@ def ReceivedMessage(ip, port):
             f = open(dir,'rb')
             c.sendall(f.read())
 
+
+        elif command.split("#")[0] == "0003":
+            file = basedir + "\\" + command.split("#")[1][1:]
+            file = dir.replace('*', '\\')
+            c.send(str(os.path.getmtime(file)).encode('utf-8'))
         #print("c.recv(1024):   ", data.decode('utf-8'))
 
         #c.send('您好，您收到了服务器的回复'.encode('utf-8'))

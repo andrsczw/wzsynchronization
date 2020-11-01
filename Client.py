@@ -42,7 +42,9 @@ def tes(ip, port, local_config_dir, remotefiles):
             # print("v_to_un_*:  ",v)
             filepath = local_config_dir + "\\" + v.replace("\\", "*")
             if not os.path.isfile(filepath):
-                print(filepath)
+                print("       sssssssssssss   ",local_config_dir, filepath)
+
+
                 GetFile('127.0.0.1', 8000, "0002#" + v.replace("\\", "*"), local_config_dir)
         # remotefiles = list(set(remotefiles))
         # print("list(set(remotefiles))    ", remotefiles,"  len=",len(remotefiles))
@@ -100,10 +102,8 @@ def Client(ip, port, local_config_dir):
         start = time.time()
         print("同步开始！ ", start)
         tes(ip, port, local_config_dir, remotedirs)
-
-
         end = time.time()
-        print("同步结束!", end)
+        print("同步结束!", end, "耗时： ", int(start-end))
 
         time.sleep(20)
 
