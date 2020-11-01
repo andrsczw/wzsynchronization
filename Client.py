@@ -1,3 +1,4 @@
+import hashlib
 import os
 import pickle
 import socket
@@ -40,12 +41,20 @@ def tes(ip, port, local_config_dir, remotefiles):
 
             # print("v_to_un_*:  ",v)
             # print("v_to_un_*:  ",v)
-            filepath = local_config_dir + "\\" + v.replace("\\", "*")
+            filepath = local_config_dir + "*" + v.replace("*", "\\")
+            print(" 1111111111111   sssssssssssss   ", local_config_dir, filepath)
             if not os.path.isfile(filepath):
-                print("       sssssssssssss   ",local_config_dir, filepath)
-
-
-                GetFile('127.0.0.1', 8000, "0002#" + v.replace("\\", "*"), local_config_dir)
+                print("    sssssssssssss   ", local_config_dir, filepath)
+                filehash = ""
+                with open(filepath,'rb') as f:
+                    md5obj = hashlib.md5()
+                    md5obj.update(f.read())
+                    filepath = md5obj.hexdigest()
+                msg = SendMessage('127.0.0.1', 8000, "0003#" + v.replace("\\", "*"))
+                msg = pickle.loads(msg)
+                print(msg)
+                if msg != filepath:
+                    GetFile('127.0.0.1', 8000, "0002#" + v.replace("\\", "*"), local_config_dir)
         # remotefiles = list(set(remotefiles))
         # print("list(set(remotefiles))    ", remotefiles,"  len=",len(remotefiles))
 
