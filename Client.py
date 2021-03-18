@@ -10,7 +10,11 @@ from tool.SendMessage import SendMessage
 import shutil
 
 def createBlankDirs(dir, basedir):
-    #print("0001#"+dir)
+    print("0001#"+dir)
+    print("-------basedir", basedir)
+    print("----------filedir", os.path.join(basedir,dir))
+    print("---------filedirold", basedir + "\\" + dir)
+
     if not os.path.exists(basedir + "\\" + dir):
         os.mkdir(basedir + "\\" + dir)
 
@@ -24,7 +28,7 @@ def tes(ip, port, local_config_dir, remotefiles):
     localdirs = GetDirectories.GetDirectories(local_config_dir, {})
     remotefiles = []
     if isinstance(remotedirs, dict):
-        # print(remotedirs)
+
         # 新建空目录
         GetDictElement.GetDirsDictElement(remotedirs, createBlankDirs, local_config_dir)  # ("lambda x:print  ",  x))
 
@@ -80,6 +84,7 @@ def Client(ip, port, local_config_dir):
     shutil.rmtree(local_config_dir)
     os.mkdir(local_config_dir)
     localdirs = GetDirectories.GetDirectories(local_config_dir, {})
+    print(remotedirs)
     remotefiles = []
     if isinstance(remotedirs, dict):
         # print(remotedirs)
@@ -113,7 +118,6 @@ def Client(ip, port, local_config_dir):
         tes(ip, port, local_config_dir, remotedirs)
         end = time.time()
         print("同步结束!", end, "耗时： ", int(start-end))
-
         time.sleep(20)
 
 

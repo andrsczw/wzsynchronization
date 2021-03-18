@@ -33,6 +33,7 @@ def GetFile(rip, rport, msg, localbasedir):
                 #print("num=  ",num,"data=  ", data)
                 #print("num=  ",num,"len(data)=  ", len(data))
             print("同步文件", filename)
+            #print("total_data:  ", total_data)
             with open(filename, 'wb') as f:
                 f.write(total_data)
                 print("同步文件成功!  ", filename)
